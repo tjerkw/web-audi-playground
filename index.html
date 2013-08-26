@@ -18,9 +18,9 @@
 var Constants = {
 	BOX_SIZE: 1,
 	BOX_PADDING: 0.2,
-	NUM_COLUMNS: 8,
+	NUM_COLUMNS: 7,
 	COLUMNS_WIDTH: 8*2,
-	BOXES_PER_COLUMN: 8,
+	BOXES_PER_COLUMN: 7,
 	MILLIS_PER_TICK: 130
 };
 
@@ -322,24 +322,12 @@ function SoundMachine(columns) {
     var assetsPath = "./assets/tr808/";
     var manifest = [
         {src:assetsPath+"tr808-1.ogg", id:1},
-
-        {src:assetsPath+"tr808-2.ogg", id:2},
-
-        {src:assetsPath+"tr808-3.ogg", id:3}  /*,
-        {src:assetsPath+"Game-Spawn.mp3|"+assetsPath+"Game-Spawn.ogg", id:2},
-        {src:assetsPath+"Game-Shot.mp3|"+assetsPath+"Game-Shot.ogg", id:3},
-
-        {src:assetsPath+"GU-StealDaisy.mp3|"+assetsPath+"GU-StealDaisy.ogg", id:4},
-        {src:assetsPath+"Humm.mp3|"+assetsPath+"Humm.ogg", id:5},
-        {src:assetsPath+"R-Damage.mp3|"+assetsPath+"R-Damage.ogg", id:6},
-
-        {src:assetsPath+"Thunder1.mp3|"+assetsPath+"Thunder1.ogg", id:7},
-        {src:assetsPath+"S-Damage.mp3|"+assetsPath+"S-Damage.ogg", id:8},
-        {src:assetsPath+"U-CabinBoy3.mp3|"+assetsPath+"U-CabinBoy3.ogg", id:9},
-
-        {src:assetsPath+"ToneWobble.mp3|"+assetsPath+"ToneWobble.ogg", id:10},
-        {src:assetsPath+"Game-Death.mp3|"+assetsPath+"Game-Death.ogg", id:11},
-        {src:assetsPath+"Game-Break.mp3|"+assetsPath+"Game-Break.ogg", id:12}*/  //OJR would prefer a new sound rather than a copy
+        {src:assetsPath+"tr808-6.ogg", id:2},
+        {src:assetsPath+"tr808-7.ogg", id:3},
+        {src:assetsPath+"tr808-4.ogg", id:4},
+        {src:assetsPath+"tr808-5.ogg", id:5},
+        {src:assetsPath+"tr808-2.ogg", id:6},
+        {src:assetsPath+"tr808-3.ogg", id:7}
     ];
 
     createjs.Sound.addEventListener("fileload", createjs.proxy(soundLoaded, this)); // add an event listener for when load is completed
@@ -354,19 +342,13 @@ function SoundMachine(columns) {
         createjs.Sound.stop();
     }
 
-    function playSound(id) {
-    	id++;
+    function play(index) {
+    	var id = index + 1;
     	console.log("playing:", id);
         //Play the sound: play (src, interrupt, delay, offset, loop, volume, pan)
         var instance = createjs.Sound.play(id, createjs.Sound.INTERRUPT_NONE, 0, 0, false, 1);
         if (instance == null || instance.playState == createjs.Sound.PLAY_FAILED) { return; }
 	}
-
-    /*
-	function play(index) {
-		instruments[index].play();
-	}
-	*/
 
 	return {
 		"play": playSound
